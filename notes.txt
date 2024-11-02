@@ -1,0 +1,50 @@
+
+chapter 87- Try and catch
+
+
+
+If you run the following code, nothing will happen.
+1 function greetWorld() {
+2 var greeting = "Hello world!";
+3 aler(greeting);
+4 }
+The keyword alert, misspelled aler, breaks the code. But JavaScript doesn't tell you
+what's wrong. It's like a car that won't start. Is it the battery? The fuel line? A spark plug?
+Of course, in the small piece of code above, it's easy to spot the problem. But what if the
+function runs 40 lines and calls three other functions? It would be nice if JavaScript reported
+the specific problem to you instead of just breaking. Well, that's what try...catch is for. Here's
+how it works.
+1 function greetWorld() {
+2 try {
+3 var greeting = "Hello world!";
+4 aler(greeting);
+5 }
+6 catch(err) {
+7 alert(err);
+8 }
+9 }
+The original operational code is wrapped in the try block. The mis-formed aler causes
+a JavaScript error, which is passed to the catch block. An alert displays the error that caused
+the problem.
+When you wrap some operational code in a try block, you say to JavaScript, "Try to
+execute this code. If there's an error, stop executing, and go to the catch block to see what to
+do." In the example above, the error thrown by JavaScript is assigned to the parameter err,
+and that value is displayed in an alert:
+"ReferenceError: Can't find variable: aler"
+Okay, so in this case JavaScript doesn't give you exactly the information you want.
+Instead of letting you know that you left a "t" off the alert keyword, it tells you it has
+encountered a variable that hasn't been defined. But close enough. JavaScript has pointed you
+in the right direction.
+Note that try and catch are always paired. Without try, an error won't trigger catch.
+Without catch, JavaScript won't know what to do when it throws an error.
+Some more things to keep in mind:
+The code inside the try and the catch blocks is wrapped in curly brackets.
+278
+The functional code inside the try block is indented.
+The error parameter, in this case err, can take any legal variable name.
+In this example, an alert displays when an error occurs. But you could do something else.
+The try and catch pair have limited usefulness. For example, in the example above, if
+you omit a parenthesis, bracket, or quotation mark, or if you have too many of them, no alert
+will display. The code will just break, and nothing will happen. The try and catch approach
+is useful mainly for spotting variables that haven't been defined or, as in this case, errors that
+JavaScript interprets as variables that haven't been defined.
